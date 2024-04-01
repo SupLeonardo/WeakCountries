@@ -1,0 +1,59 @@
+add_namespace = bel
+
+    country_event = {
+        id = bel.1
+        title = bel.1t
+        desc = bel.1d
+        picture = GFX_report_event_german_parade_paris
+        is_triggered_only = yes
+        trigger = {
+            has_completed_focus = start_goverment
+        }
+        option = {
+            name = bel.1a
+            add_manpower = 50000
+        }
+        option = {
+            name = bel.1b
+            add_manpower = 100000
+            add_stability = -0.05
+        }
+    }
+    country_event = {
+        id = bel.2
+        title = bel.2t
+        desc = bel.2d
+        picture = GFX_report_event_german_parade_paris
+        is_triggered_only = yes
+        option = {
+            name = bel.2a
+            ai_chance = {
+                base = 0
+                modifier = {
+                    add = 100
+                    has_opinion = {
+                        target = BEL
+                        value > 75
+                    }
+                }
+            }
+            add_equipment_to_stockpile = {
+                type = convoy
+                amount = -100
+            }
+        }
+        option = {
+            name = bel.2b
+            ai_chance = {
+                base = 100
+                modifier = {
+                    add = -100
+                    has_opinion = {
+                        target = BEL
+                        value < 75
+                    }
+                }
+            }
+            
+        }
+    }

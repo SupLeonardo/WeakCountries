@@ -1,0 +1,360 @@
+focus_tree = {
+	id = BEL_focuses
+
+	country = {
+		factor = 0
+
+		modifier = {
+			add = 1
+			tag = BEL
+		}
+	}
+	
+	default = no
+	
+    # Diplomacy
+
+    focus = {
+        id = start_political
+        icon = GFX_goal_generic_improve_relations
+        x = 8
+        y = 0
+        cost = 5
+        available = {
+            has_completed_focus = start_goverment
+        }
+        completion_reward = {
+            add_political_power = 50
+            
+        }
+    }
+    focus = {
+        id = sea_friends
+        icon = GFX_goal_generic_occupy_states_coastal
+        prerequisite = { focus = start_political }
+        relative_position_id = start_political 
+        x = -2
+        y = 1
+        cost = 5
+        completion_reward = {
+            add_political_power = 50
+            USA = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }
+            ENG = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }            
+            
+        }
+    }
+    focus = {
+        id = land_friends
+        icon = GFX_goal_generic_occupy_states_coastal
+        prerequisite = { focus = start_political }
+        relative_position_id = sea_friends 
+        x = 4
+        y = 0
+        cost = 5
+        completion_reward = {
+            add_political_power = 50
+            GER = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }
+            FRA = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }
+            HOL = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }
+            LUX = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }    
+        }
+    }
+    focus = {
+        id = call_france
+        icon = GFX_focus_chi_reach_out_to_france
+        prerequisite = { focus = land_friends }
+        relative_position_id = land_friends
+        mutually_exclusive = { focus = call_eng }
+        mutually_exclusive = { focus = call_germany }
+        x = 0
+        y = 1
+        cost = 5
+        completion_reward = {
+            
+            add_popularity = { ideology = democratic popularity = 0.05 }
+        }
+    }
+    focus = {
+        id = call_germany
+        prerequisite = { focus = land_friends }
+        icon = GFX_focus_chi_mission_to_germany
+        relative_position_id = land_friends
+        mutually_exclusive = { focus = call_eng }
+        mutually_exclusive = { focus = call_france }  
+        x = 2
+        y = 1
+        cost = 5
+        completion_reward = {
+            add_political_power = 50
+            add_timed_idea = { idea = ideas_ger days = 60 }
+        }
+    }
+    focus = {
+        id = call_eng
+        prerequisite = { focus = sea_friends }
+        icon = GFX_focus_chi_british_cooperation
+        relative_position_id = sea_friends
+        mutually_exclusive = { focus = call_germany }
+        mutually_exclusive = { focus = call_france }  
+        x = 0
+        y = 1
+        cost = 5
+        completion_reward = {
+            add_political_power = 50
+            ENG = {
+                add_opinion_modifier = { target = BEL modifier = medium_increase }
+            }
+            add_popularity = { ideology = democratic popularity = 0.1 }
+        }
+    }
+    focus = {
+        id = democracy_from_others
+        icon = GFX_goal_support_democracy
+        prerequisite = {
+            focus = call_eng focus = call_france
+        }
+        relative_position_id = call_eng
+        cost = 5
+        x = 2
+        y = 1
+        completion_reward = { }
+    }
+    focus = {
+        id = fascism_from_others
+        icon = GFX_goal_support_fascism
+        prerequisite = {
+            focus = call_germany
+            focus = start_fascsm
+        }
+        relative_position_id = call_germany
+        cost = 5
+        x = 1
+        y = 1
+        completion_reward = { }
+    }
+    
+    # Goverment
+    focus = {
+        id = start_goverment
+        icon = GFX_focus_generic_improve_the_administration
+        x = 17
+        y = 0
+        cost = 5
+        completion_reward = {
+            add_political_power = 150
+            add_ideas = ideas1 
+        }
+    }
+    focus = {
+        id = war_budget
+        icon = GFX_focus_renounce_the_treaty_of_trianon
+        cost = 5
+        relative_position_id = start_goverment
+        prerequisite = {
+            focus = start_goverment
+        }
+        x = -3
+        y = 1
+        completion_reward = { }
+    }    
+    focus = {
+        id = national_start
+        icon = GFX_focus_generic_strike_at_democracy1
+        relative_position_id = start_goverment
+        prerequisite = {
+            focus = start_goverment
+        }
+        cost = 5
+        x = -1
+        y = 1
+        completion_reward = {
+            add_popularity = {
+                ideology = neutrality
+                popularity = 0.15
+            }
+            add_popularity = {
+                ideology = fascism
+                popularity = 0.15
+            }
+        }
+    }
+    focus = {
+        id = start_fascsm
+        icon = GFX_focus_generic_fascist_propaganda
+        cost = 5
+        relative_position_id = national_start
+        prerequisite = {
+            focus = national_start
+        }
+        x = -2
+        y = 1
+        completion_reward = { }
+    }
+    focus = {
+        id = start_neutral
+        icon = GFX_goal_tfv_strengthen_commonwealth_ties
+        cost = 5
+        relative_position_id = national_start
+        prerequisite = {
+            focus = national_start
+        }
+        x = 0
+        y = 1
+        completion_reward = { }
+    }        
+    ####################
+    #      ARMY        #
+    ####################
+    focus = {
+        id = start_army
+        prerequisite = {
+            focus = rearmy
+        }
+        icon = GFX_surrender_tiny_flag
+        cost = 5
+        relative_position_id = rearmy
+        x = 0
+        y = 1
+        completion_reward = {
+            army_experience = 75
+        }
+    }
+    focus = {
+        id = army2
+        prerequisite = {
+            focus = start_army
+        }
+        icon = GFX_surrender_tiny_flag
+        cost = 5
+        relative_position_id = start_army
+        x = 0
+        y = 1
+        completion_reward = {
+            BEL = {
+                random_owned_controlled_state = {    
+                    add_extra_state_shared_building_slots = 4
+                    add_building_construction = {
+                        type = arms_factory
+                        level = 2
+                        instant_build = yes
+                    }
+                }
+            }
+        }
+    }
+    # Navy
+    focus = {
+        id = rearmy
+        icon = GFX_goal_generic_position_armies
+        cost = 7.2
+        x = 2
+        y = 0
+        available = {
+            has_completed_focus = war_budget
+        }
+        completion_reward = {
+            add_command_power = 50
+        }
+    }
+    focus = {
+        id = start_naval
+        prerequisite = {
+            focus = rearmy
+        }
+        icon = GFX_goal_generic_build_navy
+        relative_position_id = rearmy
+        x = 2
+        y = 1
+        cost = 5
+        completion_reward = {
+            
+            add_ideas = naval_start
+        }
+    }
+    focus = {
+        id = build_naval
+        relative_position_id =  start_naval
+        icon = GFX_goal_generic_construct_naval_dockyard
+		prerequisite = { focus = start_naval }
+		x = 0
+		y = 1
+        cost = 5
+        completion_reward = {
+            BEL = {
+                random_owned_controlled_state = {
+                    add_extra_state_shared_building_slots = 4
+                    add_building_construction = {
+                        type = dockyard
+                        level = 4
+                        instant_build = yes
+                        }
+                }
+            }
+        }
+    }
+    focus = {
+        id = start_naval_prod
+        icon = GFX_goal_generic_navy_doctrines_tactics
+		prerequisite = { focus = build_naval }
+        relative_position_id = build_naval
+		x = 0
+		y = 1
+        cost = 5
+        completion_reward = {
+            navy_experience = 75
+        }
+    }
+    focus = {
+        id = light_ships
+        relative_position_id = start_naval_prod
+        icon = GFX_focus_generic_destroyer
+        cost = 2.2
+        y = 1
+        x = 0
+        prerequisite = { focus = start_naval_prod}
+        completion_reward = {
+            navy_experience = 25
+			add_tech_bonus = {
+				name = dd_tech
+				bonus = 2.0
+				uses = 1
+				category = dd_tech
+			}
+        }
+    }
+    focus = {
+        id = ask_for_convoys
+        relative_position_id = start_naval_prod
+        icon = GFX_goal_generic_occupy_states_coastal
+        cost = 2.2
+        y = 1
+        x = 2
+        prerequisite = { focus = start_naval_prod }
+        prerequisite = {
+            focus = call_eng
+        }
+        completion_reward = {
+            ENG = {
+                country_event = {
+                    id = bel.2
+                    days = 1
+                }
+            }
+        }
+    }
+    
+
+}
+
