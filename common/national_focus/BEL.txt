@@ -132,18 +132,44 @@ focus_tree = {
         completion_reward = { }
     }
     focus = {
-        id = fascism_from_others
-        icon = GFX_goal_support_fascism
+        id = france_industry
+        icon = GFX_goal_support_democracy
+        prerequisite = {
+            focus = call_france
+        }
+        relative_position_id = call_france
+        cost = 5
+        x = 0
+        y = 1
+        offset = {
+            x = 0
+            y = 0
+            trigger = {
+                has_completed_focus = call_germany
+            }
+        }
+        completion_reward = { }
+    }
+    focus = {
+        id = ger_industry
+        icon = GFX_goal_support_democracy
         prerequisite = {
             focus = call_germany
-            focus = start_fascsm
         }
         relative_position_id = call_germany
         cost = 5
-        x = 1
+        x = 0
         y = 1
+        offset = {
+            x = 0
+            y = -1
+            trigger = {
+                has_completed_focus = call_france
+            }
+        }
         completion_reward = { }
     }
+    
     
     # Goverment
     focus = {
@@ -168,7 +194,51 @@ focus_tree = {
         x = -3
         y = 1
         completion_reward = { }
-    }    
+    }
+    focus = {
+        id = free_start
+        icon = GFX_focus_generic_strike_at_democracy1
+        relative_position_id = start_goverment
+        prerequisite = {
+            focus = start_goverment
+        }
+        cost = 10
+        x = 1
+        y = 1
+        available = {
+            NOT = {
+                has_completed_focus = call_germany
+            }
+        }
+        completion_reward = {
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.15
+            }
+        }
+    }
+    focus = {
+        id = com_start
+        icon = GFX_focus_generic_strike_at_democracy1
+        relative_position_id = start_goverment
+        prerequisite = {
+            focus = start_goverment
+        }
+        cost = 10
+        x = 3
+        y = 1
+        available = {
+            NOT = {
+                has_completed_focus = call_germany
+            }
+        }
+        completion_reward = {
+            add_popularity = {
+                ideology = communism
+                popularity = 0.15
+            }
+        }
+    }
     focus = {
         id = national_start
         icon = GFX_focus_generic_strike_at_democracy1
@@ -176,9 +246,15 @@ focus_tree = {
         prerequisite = {
             focus = start_goverment
         }
-        cost = 5
+        cost = 10
         x = -1
         y = 1
+        available = {
+            NOT = {
+                has_completed_focus = call_france
+                has_completed_focus = call_france
+            }
+        }
         completion_reward = {
             add_popularity = {
                 ideology = neutrality
@@ -191,12 +267,15 @@ focus_tree = {
         }
     }
     focus = {
-        id = start_fascsm
+        id = start_fascism
         icon = GFX_focus_generic_fascist_propaganda
-        cost = 5
+        cost = 10
         relative_position_id = national_start
         prerequisite = {
             focus = national_start
+        }
+        mutually_exclusive = {
+            focus = start_neutral
         }
         x = -2
         y = 1
@@ -205,12 +284,57 @@ focus_tree = {
     focus = {
         id = start_neutral
         icon = GFX_goal_tfv_strengthen_commonwealth_ties
-        cost = 5
+        cost = 10
+        mutually_exclusive = {
+            focus = start_fascism
+        }
         relative_position_id = national_start
         prerequisite = {
             focus = national_start
         }
         x = 0
+        y = 1
+        completion_reward = { }
+    }
+    focus = {
+        id = fascism_rule
+        icon = GFX_focus_generic_support_the_left_right
+        prerequisite = {
+            focus = call_germany
+        }
+        prerequisite = {
+            focus = start_fascism
+        }
+        relative_position_id = call_germany
+        cost = 5 
+        x = 2
+        y = 1
+        completion_reward = {
+            set_politics = { ruling_party = fascism elections_allowed = no }
+        }
+    }
+    focus = {
+        id = monarchy 
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = start_neutral
+        prerequisite = {
+            focus = start_neutral
+        }
+        x = 0
+        y = 1
+        completion_reward = { }
+    }    
+    focus = {
+        id = lux_wargoal
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = monarchy
+        prerequisite = {
+            focus = monarchy
+            focus = fascism_rule
+        }
+        x = -1
         y = 1
         completion_reward = { }
     }        
