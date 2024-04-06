@@ -1,5 +1,5 @@
 <h1 align='center'>A Hearts of Iron IV mod for weak countries</h1>
-[Duck Duck Go](https://duckduckgo.com "The best search engine for privacy")
+<h2><a href="https://github.com/cwtools/cwtools-vscode">Big thanks for developers of this extension for VS Code</a></h2>
 <h2>It's a simple mod for weak countries. It includes:</h2>
 <ul>
   <li>Custom leaders</li>
