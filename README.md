@@ -6,4 +6,10 @@
   <li>Ideas</li>
   <li>Events</li>
 </ul>
-<h2>Now, I am maling custom focuses and etc for Belgium</h2>
+<h2>Now, I am making custom focuses and etc for Belgium</h2>
+<h3>List of countries that are in plans:</h3>
+<ul>
+  <li>Madagascar</li>
+  <li>Austria</li>
+  <li>Monaco (not sure)</li>
+</ul>
