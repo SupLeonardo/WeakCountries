@@ -175,7 +175,7 @@ focus_tree = {
     focus = {
         id = start_goverment
         icon = GFX_focus_generic_improve_the_administration
-        x = 17
+        x = 23
         y = 0
         cost = 5
         completion_reward = {
@@ -191,7 +191,7 @@ focus_tree = {
         prerequisite = {
             focus = start_goverment
         }
-        x = -3
+        x = -8
         y = 1
         completion_reward = { }
     }
@@ -203,7 +203,7 @@ focus_tree = {
             focus = start_goverment
         }
         cost = 10
-        x = 1
+        x = 3
         y = 1
         available = {
             NOT = {
@@ -225,7 +225,7 @@ focus_tree = {
             focus = start_goverment
         }
         cost = 10
-        x = 3
+        x = 6
         y = 1
         available = {
             NOT = {
@@ -247,7 +247,7 @@ focus_tree = {
             focus = start_goverment
         }
         cost = 10
-        x = -1
+        x = -3
         y = 1
         available = {
             NOT = {
@@ -258,11 +258,11 @@ focus_tree = {
         completion_reward = {
             add_popularity = {
                 ideology = neutrality
-                popularity = 0.15
+                popularity = 0.10
             }
             add_popularity = {
                 ideology = fascism
-                popularity = 0.15
+                popularity = 0.10
             }
         }
     }
@@ -277,7 +277,7 @@ focus_tree = {
         mutually_exclusive = {
             focus = start_neutral
         }
-        x = -2
+        x = -2.5
         y = 1
         completion_reward = { }
     }
@@ -305,13 +305,21 @@ focus_tree = {
         prerequisite = {
             focus = start_fascism
         }
-        relative_position_id = call_germany
+        relative_position_id = start_fascism
         cost = 5 
-        x = 2
+        x = -3
         y = 1
         completion_reward = {
             set_politics = { ruling_party = fascism elections_allowed = no }
         }
+    }
+    focus = {
+        id = more_fascism
+        relative_position_id = fascism_rule
+        cost = 5
+        x = 0
+        y = 2
+        prerequisite = { focus = fascism_rule }
     }
     focus = {
         id = monarchy 
@@ -323,7 +331,19 @@ focus_tree = {
         }
         x = 0
         y = 1
-        completion_reward = { }
+        completion_reward = {
+            add_popularity = {
+                ideology = neutrality
+                popularity = 0.14
+            }
+            BEL = {
+                country_event = {
+                    id = bel.3
+                    days = 14
+                }
+            }
+
+        }
     }    
     focus = {
         id = lux_wargoal
@@ -334,9 +354,15 @@ focus_tree = {
             focus = monarchy
             focus = fascism_rule
         }
-        x = -1
-        y = 1
-        completion_reward = { }
+        x = -2.5
+        y = 2
+        completion_reward = {
+            add_core_of = LUX
+            create_wargoal = {
+                type = annex_state_focus
+                target = LUX
+            }
+        }
     }        
     ####################
     #      ARMY        #
