@@ -344,7 +344,7 @@ focus_tree = {
             }
 
         }
-    }    
+    }   
     focus = {
         id = lux_wargoal
         icon = GFX_surrender_tiny_flag
@@ -357,9 +357,8 @@ focus_tree = {
         x = -2.5
         y = 2
         completion_reward = {
-            add_core_of = LUX
             create_wargoal = {
-                type = annex_state_focus
+                type = annex_everything
                 target = LUX
             }
         }

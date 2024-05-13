@@ -63,16 +63,16 @@ add_namespace = bel
         desc = bel.3d
         is_triggered_only = yes
         # leopold III
-        option = [
+        option = {
             name = bel.3a
             ai_chance = {
                 base = 100
             }
-        ]
-        option = [
+        }
+        option = {
             name = bel.3b
             ai_chance = {
                 base = 0
             }
-        ]
+        }
     }
