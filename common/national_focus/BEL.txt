@@ -13,7 +13,6 @@ focus_tree = {
 	default = no
 	
     # Diplomacy
-
     focus = {
         id = start_political
         icon = GFX_goal_generic_improve_relations
@@ -80,9 +79,13 @@ focus_tree = {
         mutually_exclusive = { focus = call_germany }
         x = 0
         y = 1
-        cost = 5
+        cost = 10
+        available = {
+            NOT = {
+                has_completed_focus = monarchy
+            }
+        }
         completion_reward = {
-            
             add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
@@ -197,7 +200,7 @@ focus_tree = {
     }
     focus = {
         id = free_start
-        icon = GFX_focus_generic_strike_at_democracy1
+        icon = GFX_focus_generic_the_giant_wakes
         relative_position_id = start_goverment
         prerequisite = {
             focus = start_goverment
@@ -216,6 +219,49 @@ focus_tree = {
                 popularity = 0.15
             }
         }
+    }
+    focus = {
+        id = fraction
+        icon = GFX_surrender_tiny_flag
+        cost = 7
+        relative_position_id = free_start
+        x = -3
+        y = 2
+        prerequisite = {
+            focus = national_start
+            focus = free_start
+        }
+        completion_reward = { }
+    }
+    focus = {
+        id = way_to_allies
+        relative_position_id = free_start
+        icon = GFX_surrender_tiny_flag
+        prerequisite = {
+            focus = fraction
+            
+        }
+        available = {
+            NOT = { democratic < 0.5}
+        }
+        cost = 5
+        x = -2
+        y = 3
+        completion_reward = { }
+    }
+    focus = {
+        id = own_alliance
+        relative_position_id = free_start
+        icon = GFX_surrender_tiny_flag
+        prerequisite = {
+            focus = monarchy
+            focus = fraction
+        }
+        
+        cost = 5
+        x = -4
+        y = 3
+        completion_reward = { }
     }
     focus = {
         id = com_start
@@ -252,7 +298,7 @@ focus_tree = {
         available = {
             NOT = {
                 has_completed_focus = call_france
-                has_completed_focus = call_france
+                has_completed_focus = call_eng
             }
         }
         completion_reward = {
@@ -264,6 +310,7 @@ focus_tree = {
                 ideology = fascism
                 popularity = 0.10
             }
+            add_stability = -0.2
         }
     }
     focus = {
@@ -279,7 +326,12 @@ focus_tree = {
         }
         x = -2.5
         y = 1
-        completion_reward = { }
+        completion_reward = {
+            add_popularity = {
+                ideology = fascism
+                popularity = 0.14
+            }
+        }
     }
     focus = {
         id = start_neutral
@@ -307,7 +359,7 @@ focus_tree = {
         }
         relative_position_id = start_fascism
         cost = 5 
-        x = -3
+        x = -2
         y = 1
         completion_reward = {
             set_politics = { ruling_party = fascism elections_allowed = no }
@@ -315,15 +367,16 @@ focus_tree = {
     }
     focus = {
         id = more_fascism
+        icon = GFX_goal_demand_sudetenland
         relative_position_id = fascism_rule
         cost = 5
         x = 0
-        y = 2
+        y = 1
         prerequisite = { focus = fascism_rule }
     }
     focus = {
         id = monarchy 
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_generic_monarchy_1
         cost = 10
         relative_position_id = start_neutral
         prerequisite = {
@@ -336,26 +389,65 @@ focus_tree = {
                 ideology = neutrality
                 popularity = 0.14
             }
-            BEL = {
-                country_event = {
-                    id = bel.3
-                    days = 14
+            hidden_effect = {
+                BEL = {
+                    country_event = {
+                        id = bel.3
+                        days = 14
+                    }
                 }
             }
+            
 
+        }
+    }
+    focus = {
+        id = all_king
+        icon = GFX_focus_rom_royal_dictatorship
+        cost = 10
+        relative_position_id = monarchy
+        x = 0
+        y = 1
+        prerequisite = {
+            focus = monarchy
+        }
+        completion_reward = {
+            set_politics = { ruling_party = neutrality elections_allowed = no }
         }
     }   
     focus = {
         id = lux_wargoal
-        icon = GFX_surrender_tiny_flag
-        cost = 10
+        icon = GFX_goal_generic_position_armies
+        cost = 5
         relative_position_id = monarchy
         prerequisite = {
             focus = monarchy
-            focus = fascism_rule
+            focus = fascism_rule 
         }
-        x = -2.5
-        y = 2
+        x = -2
+        y = 1
+        completion_reward = {
+            create_wargoal = {
+                type = annex_everything
+                target = LUX
+            }
+            create_wargoal = {
+                type = annex_everything
+                target = HOL
+            }
+        }
+    }
+    focus = {
+        id = null_constitution
+        icon = GFX_focus_renounce_the_treaty_of_trianon
+        cost = 5
+        relative_position_id = lux_wargoal
+        prerequisite = {
+            focus = lux_wargoal
+            
+        }
+        x = 0
+        y = 1
         completion_reward = {
             create_wargoal = {
                 type = annex_everything
@@ -379,6 +471,7 @@ focus_tree = {
         completion_reward = {
             army_experience = 75
         }
+        
     }
     focus = {
         id = army2
@@ -408,7 +501,7 @@ focus_tree = {
         id = rearmy
         icon = GFX_goal_generic_position_armies
         cost = 7.2
-        x = 2
+        x = 1
         y = 0
         available = {
             has_completed_focus = war_budget
@@ -416,6 +509,7 @@ focus_tree = {
         completion_reward = {
             add_command_power = 50
         }
+        
     }
     focus = {
         id = start_naval
