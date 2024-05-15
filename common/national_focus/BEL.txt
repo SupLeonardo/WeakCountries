@@ -187,6 +187,18 @@ focus_tree = {
         }
     }
     focus = {
+        id = start_fraction
+        icon = GFX_focus_generic_improve_the_administration
+        relative_position_id = start_goverment
+        x = 0
+        y = 1
+        cost = 5
+        completion_reward = {
+            add_political_power = 150
+            add_ideas = ideas1 
+        }
+    }
+    focus = {
         id = war_budget
         icon = GFX_focus_renounce_the_treaty_of_trianon
         cost = 5
@@ -224,18 +236,17 @@ focus_tree = {
         id = fraction
         icon = GFX_surrender_tiny_flag
         cost = 7
-        relative_position_id = free_start
-        x = -3
-        y = 2
-        prerequisite = {
-            focus = national_start
-            focus = free_start
-        }
+        
+        x = 35
+        y = 0
+        # available = {
+        #     has_completed_focus = 
+        # }
         completion_reward = { }
     }
     focus = {
         id = way_to_allies
-        relative_position_id = free_start
+        relative_position_id = fraction
         icon = GFX_surrender_tiny_flag
         prerequisite = {
             focus = fraction
@@ -245,16 +256,16 @@ focus_tree = {
             NOT = { democratic < 0.5}
         }
         cost = 5
-        x = -2
+        x = 4
         y = 3
         completion_reward = { }
     }
     focus = {
         id = own_alliance
-        relative_position_id = free_start
+        relative_position_id = fraction
         icon = GFX_surrender_tiny_flag
         prerequisite = {
-            focus = monarchy
+            
             focus = fraction
         }
         
@@ -359,7 +370,7 @@ focus_tree = {
         }
         relative_position_id = start_fascism
         cost = 5 
-        x = -2
+        x = -3
         y = 1
         completion_reward = {
             set_politics = { ruling_party = fascism elections_allowed = no }
@@ -416,7 +427,7 @@ focus_tree = {
         }
     }   
     focus = {
-        id = lux_wargoal
+        id = luxandhol_wargoal
         icon = GFX_goal_generic_position_armies
         cost = 5
         relative_position_id = monarchy
@@ -424,7 +435,7 @@ focus_tree = {
             focus = monarchy
             focus = fascism_rule 
         }
-        x = -2
+        x = -2.5
         y = 1
         completion_reward = {
             create_wargoal = {
@@ -441,18 +452,15 @@ focus_tree = {
         id = null_constitution
         icon = GFX_focus_renounce_the_treaty_of_trianon
         cost = 5
-        relative_position_id = lux_wargoal
+        relative_position_id = luxandhol_wargoal
         prerequisite = {
-            focus = lux_wargoal
+            focus = luxandhol_wargoal
             
         }
         x = 0
         y = 1
         completion_reward = {
-            create_wargoal = {
-                type = annex_everything
-                target = LUX
-            }
+            add_stability = -0.1
         }
     }        
     ####################
