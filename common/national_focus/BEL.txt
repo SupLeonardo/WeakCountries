@@ -362,7 +362,7 @@ focus_tree = {
         x = -2
         y = 1
         completion_reward = {
-            set_politics = { ruling_party = fascism elections_allowed = no }
+            add_war_support = 0.1
         }
     }
     focus = {
@@ -458,6 +458,21 @@ focus_tree = {
     ####################
     #      ARMY        #
     ####################
+    # Navy
+    focus = {
+        id = rearmy
+        icon = GFX_goal_generic_position_armies
+        cost = 7.2
+        x = 1
+        y = 0
+        available = {
+            has_completed_focus = war_budget
+        }
+        completion_reward = {
+            add_command_power = 50
+        }
+        
+    }
     focus = {
         id = start_army
         prerequisite = {
@@ -495,21 +510,6 @@ focus_tree = {
                 }
             }
         }
-    }
-    # Navy
-    focus = {
-        id = rearmy
-        icon = GFX_goal_generic_position_armies
-        cost = 7.2
-        x = 1
-        y = 0
-        available = {
-            has_completed_focus = war_budget
-        }
-        completion_reward = {
-            add_command_power = 50
-        }
-        
     }
     focus = {
         id = start_naval
