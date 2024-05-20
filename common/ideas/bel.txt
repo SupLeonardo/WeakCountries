@@ -134,7 +134,7 @@ ideas = {
 				always = yes
 			}
 			modifier = {
-				industrial_capacity_dockyard = 0.20
+				industrial_capacity_dockyard = 0.05
 			}
 		}
 		monarchy_start = {
@@ -143,7 +143,19 @@ ideas = {
 				always = yes
 			}
 			modifier = {
-				
+				political_power_factor = 0.25
+				stability_factor = 0.05
+			}
+		}
+		lion_life = {
+			removal_cost = -1
+			allowed = {
+				always = yes
+			}
+			modifier = {
+				war_stability_factor = 0.1
+				war_support_factor = 0.12
+				weekly_manpower = 1000
 			}
 		}
 	}
