@@ -119,7 +119,7 @@ focus_tree = {
             ENG = {
                 add_opinion_modifier = { target = BEL modifier = medium_increase }
             }
-            add_popularity = { ideology = democratic popularity = 0.1 }
+            add_popularity = { ideology = democratic popularity = 0.05 }
         }
     }
     focus = {
@@ -134,7 +134,8 @@ focus_tree = {
         y = 1
         completion_reward = { 
             every_core_state = {
-                add_building_construction = {
+                add_extra_state_shared_building_slots = 3
+                add_building_construction = { 
                     type = industrial_complex
                     level = 3
                 }
@@ -153,10 +154,14 @@ focus_tree = {
         x = 0
         y = 1
         completion_reward = {
-            every_core_state  = {
+            every_core_state = {
                 add_building_construction = {
                     type = bunker
                     level = 3
+                    instant_build = yes
+                    province = {
+                        all_provinces = yes
+                    }
                 }
             }
             GER = {
@@ -194,7 +199,8 @@ focus_tree = {
             }
         }
         completion_reward = {
-            34 = { 
+            34 = {
+                add_extra_state_shared_building_slots = 5 
                 add_building_construction = {
                     type = industrial_complex
                     level = 5
@@ -224,6 +230,7 @@ focus_tree = {
                 }
             }
             34 = {
+                add_extra_state_shared_building_slots = 5
                 add_building_construction = {
                     type = arms_factory
                     level = 5
@@ -232,7 +239,52 @@ focus_tree = {
            
         }
     }
-    
+    focus = {
+        id = ger_underwater
+        relative_position_id = ger_industry
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        prerequisite = {
+            focus = ger_industry
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            add_tech_bonus = {
+				bonus = 0.5
+				uses = 2
+				category = ss_tech
+            }
+        }
+    }
+    focus = {
+        id = own_naval
+        icon = GFX_surrender_tiny_flag
+        relative_position_id = ger_industry
+        cost = 10
+        prerequisite = {
+            focus = ger_industry
+        }
+        prerequisite = {
+            focus = fascism_rule
+        }
+        x = 2
+        y = 1
+        completion_reward = {
+            6 = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = dockyard
+                    level = 2
+                }
+            }
+            add_tech_bonus = {
+                category = naval_equipment
+                uses = 3
+                bonus = 0.5
+            }
+        }
+    }
     
     # Goverment
     focus = {
@@ -285,16 +337,38 @@ focus_tree = {
         }
     }
     focus = {
-        id = capitalism
-        icon = GFX_goal_support_democracy
+        id = democracy_king
+        icon = GFX_goal_tfv_strengthen_commonwealth_ties 
         relative_position_id = free_start
         prerequisite = {
             focus = free_start
+        }
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        x = -3
+        y = 1
+        completion_reward = { 
+            add_popularity = {
+                ideology = neutrality
+                popularity = 0.05
+            }
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
+        }
+    }
+    focus = {
+        id = capitalism
+        icon = GFX_goal_support_democracy
+        relative_position_id = democracy_king
+        prerequisite = {
+            focus = democracy_king
             focus = start_neutral
         }
         cost = 5
-        x = -3
-        y = 2
+        x = 0
+        y = 1
         completion_reward = {
             add_stability = 0.05
             add_political_power = 150
@@ -308,7 +382,7 @@ focus_tree = {
     }
     focus = {
         id = rights_of_human
-        icon = GFX_goal_generic_demand_territory
+        icon = GFX_goal_support_democracy
         relative_position_id = free_start
         prerequisite = {
             focus = free_start
@@ -327,7 +401,7 @@ focus_tree = {
     }
     focus = {
         id = west_course
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_goal_generic_national_unity
         cost = 5
         mutually_exclusive = {
             focus = own_course
@@ -356,7 +430,7 @@ focus_tree = {
     }
     focus = {
         id = own_course
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_generic_treaty
         cost = 5
         mutually_exclusive = {
             focus = west_course
@@ -365,14 +439,249 @@ focus_tree = {
             focus = rights_of_human
         }
         relative_position_id = rights_of_human
+        x = 2
+        y = 1
+        completion_reward = { 
+            add_stability = 0.07
+        }
+    }
+    focus = {
+        id = save_people
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        prerequisite = {
+            focus = own_course
+        }
+        relative_position_id = own_course
+        x = 0
+        y = 1
+        completion_reward = { 
+            
+        }
+    }
+    focus = {
+        id = other_democracy
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = save_people
+        prerequisite = {
+            focus = save_people
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            ENG = {
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = medium_increase
+                }
+            }
+            FRA = {
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = medium_increase
+                }
+            }
+            add_popularity = {
+                ideology = democratic
+                popularity = 0.05
+            }
+        }
+    }
+    focus = {
+        id = denmark_support
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        prerequisite = {
+            focus = other_democracy
+        }
+        relative_position_id = other_democracy
+        x = 0
+        y = 1
+        completion_reward = { 
+            DEN = {
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = medium_increase
+                }
+            }
+            add_equipment_to_stockpile = {
+                type = convoy
+                amount = 15
+            }
+        }
+    }
+    focus = {
+        id = unite_benilux
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = west_course
+        prerequisite = {
+            focus = west_course
+            focus = own_course
+        }
         x = 1
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = HOL
+                type = annex_everything
+            }
+            create_wargoal = {
+                target = LUX
+                type = annex_everything
+            }
+        }
+    }
+    focus = {
+        id = stop_fascism
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = unite_benilux
+        prerequisite = {
+            focus = unite_benilux
+        }
+        available = {
+            OR = {
+                has_completed_focus = help_from_uk
+            }
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = GER
+                type = annex_everything
+            }
+        }
+    }
+    focus = {
+        id = export_chocolate
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        relative_position_id = chocolate
+        x = 1
+        y = 1
+        prerequisite = {
+            focus = chocolate
+        }
+        prerequisite = {
+            focus = west_course
+        }
+        prerequisite = {
+            focus = unite_benilux
+        }
+        completion_reward = { }
+    }
+    focus = {
+        id = help_from_uk
+        icon = GFX_surrender_tiny_flag
+        cost = 10
+        prerequisite = {
+            focus = export_chocolate
+        }
+        relative_position_id = export_chocolate
+        x = 0
         y = 1
         completion_reward = { }
     }
     focus = {
-        id = chocolate
+        id = west_model_economy
         icon = GFX_surrender_tiny_flag
-        cost = 8
+        cost = 10
+        relative_position_id = help_from_uk
+        prerequisite = {
+            focus = help_from_uk
+        }
+        x = 0
+        y = 1
+        completion_reward = { }
+    }
+    focus = {
+        id = prepare_to_free
+        icon = GFX_focus_generic_africa_defense
+        relative_position_id = own_course
+        prerequisite = {
+            focus = own_course
+            focus = profsouses
+        }
+        cost = 10
+        x = 2
+        y = 1
+        completion_reward = { 
+            every_controlled_state = {
+				limit = {
+                    NOT = {
+                        is_core_of = BEL
+                    }
+                }
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                }
+			}
+
+        }
+    }
+    focus = {
+        id = free_africa
+        icon = GFX_focus_generic_africa_liberation
+        relative_position_id = prepare_to_free
+        prerequisite = {
+            focus = prepare_to_free
+        }
+        cost = 10
+        x = 0
+        y = 1
+        completion_reward = { 
+            every_controlled_state = {
+                limit = {
+                    NOT = {
+                        is_core_of = BEL
+                    }
+                }
+                transfer_state_to = COG
+            }
+            set_autonomy = {
+                target = COG
+                autonomy_state = autonomy_puppet
+            }
+            
+        }
+    }
+    focus = {
+        id = free_all_africa
+        icon = GFX_goal_generic_demand_territory
+        cost = 10
+        relative_position_id = free_africa
+        prerequisite = {
+            focus = free_africa
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = FRA
+                type = liberate_wargoal
+            }
+            create_wargoal = {
+                target = ENG
+                type = liberate_wargoal
+            }
+            create_wargoal = {
+                target = POR
+                type = liberate_wargoal
+            }
+            create_wargoal = {
+                target = ITA
+                type = liberate_wargoal
+            }
+        }
+    }
+    focus = {
+        id = chocolate
+        icon = GFX_focus_ETH_adopt_the_lira
+        cost = 10
         prerequisite = {
             focus = capitalism
         }
@@ -381,9 +690,10 @@ focus_tree = {
         y = 1
         completion_reward = {
             every_core_state = {
+                add_extra_state_shared_building_slots = 3
                 add_building_construction = {
                     type = industrial_complex
-                    level = 5
+                    level = 3
                 }
             }
         }
@@ -401,6 +711,7 @@ focus_tree = {
         y = 1
         completion_reward = {
             36 = {
+                add_extra_state_shared_building_slots = 3
                 add_building_construction = {
                     type = industrial_complex
                     level = 3
@@ -423,7 +734,7 @@ focus_tree = {
             focus = national_start
         }
         cost = 10
-        x = 9
+        x = 11
         y = 1
         available = {
             NOT = {
@@ -505,6 +816,55 @@ focus_tree = {
         }
     }
     focus = {
+        id = five_year
+        icon = GFX_focus_generic_industry_3
+        relative_position_id = profsouses
+        prerequisite = {
+            focus = profsouses
+        }
+        cost = 10
+        x = 0
+        y = 1
+        completion_reward = { 
+            every_core_state = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                }
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                }
+            }
+            swap_ideas = {
+                remove_idea = profsouses
+                add_idea = profsouses2
+            }
+        }
+    }
+    focus = {
+        id = prepare_for_war
+        icon = GFX_focus_focus_fra_maquis
+        cost = 10
+        relative_position_id = five_year
+        prerequisite = {
+            focus = five_year
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            every_core_state = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = bunker
+                    level = 2
+                }
+            }
+            
+        }
+    }
+    focus = {
         id = national_start
         icon = GFX_focus_generic_strike_at_democracy1
         relative_position_id = start_goverment
@@ -539,7 +899,7 @@ focus_tree = {
     focus = {
         id = start_fascism
         icon = GFX_focus_generic_fascist_propaganda
-        cost = 5
+        cost = 10
         relative_position_id = national_start
         prerequisite = {
             focus = national_start
@@ -646,10 +1006,58 @@ focus_tree = {
         x = 0
         y = 1
         completion_reward = { 
-            add_manpower = 5000
+            add_manpower = 14880
             add_political_power = 200
             add_ideas = lion_life
             add_stability = 0.05
+        }
+    }
+    focus = {
+        id = own_fascism
+        icon = GFX_goal_generic_territory_or_war
+        cost = 10
+        relative_position_id = new_emperor
+        prerequisite = {
+            focus = new_emperor
+        }
+        mutually_exclusive = {
+            focus = own_empire
+        }
+        prerequisite = {
+            focus = null_constitution
+        }
+        x = 1
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = ENG
+                type = annex_everything
+            }
+            create_wargoal = {
+                target = FRA
+                type = annex_everything
+            }
+        }
+    }
+    focus = {
+        id = victory
+        icon = GFX_goal_generic_demand_territory
+        cost = 20
+        relative_position_id = own_fascism
+        prerequisite = {
+            focus = own_empire
+            focus = own_fascism
+        }
+        x = 1
+        y = 1
+        completion_reward = { 
+            add_war_support = 0.1
+            add_command_power = 100
+            add_political_power = 350
+            add_popularity = {
+                ideology = neutrality
+                popularity = 0.2
+            }
         }
     }
     focus = {
@@ -695,6 +1103,65 @@ focus_tree = {
             }
             add_ideas = monarchy_start
             set_politics = { ruling_party = neutrality elections_allowed = no }
+        }
+    }
+    focus = {
+        id = own_kingdom
+        icon = GFX_focus_generic_military_mission
+        cost = 10
+        relative_position_id = all_king
+        # available = {
+        #     neutrality > 0.5
+        # }
+        prerequisite = {
+            focus = all_king
+        }
+        available = {
+            OR = {
+				GER = {
+                    neutrality < 0.5
+                }
+                neutrality > 0.65
+			}
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = GER
+                type = annex_everything
+            }
+            add_ideas = king_army
+        }
+    }
+    focus = {
+        id = own_empire
+        icon = GFX_focus_focus_fra_third_empire
+        relative_position_id = own_kingdom
+        cost = 10
+        mutually_exclusive = {
+            focus = own_fascism
+        }
+        prerequisite = {
+            focus = own_kingdom
+        }
+        prerequisite = {
+            focus = null_constitution
+        }
+        x = -1
+        y = 1
+        available = {
+            neutrality > 0.85
+        }
+        completion_reward = { 
+            create_wargoal = {
+                target = FRA
+                type = annex_everything
+            }
+            create_wargoal = {
+                target = ENG
+                type = annex_everything
+            }
         }
     }   
     focus = {
@@ -836,6 +1303,13 @@ focus_tree = {
         cost = 5
         completion_reward = {
             navy_experience = 75
+            add_tech_bonus = {
+				name = cr_bonus
+				bonus = 1.0
+				uses = 1
+				category = cl_tech
+				category = ca_tech
+			}
         }
     }
     focus = {
