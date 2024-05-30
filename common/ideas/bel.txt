@@ -26,6 +26,7 @@ ideas = {
 			allowed = {
 				always = yes
 			}
+			picture = generic_local_self_management
 			allowed_civil_war = {
 				always = no
 			}
@@ -36,6 +37,7 @@ ideas = {
 			}
 		}
 		profsouses2 = {
+			picture = generic_local_self_management
 			allowed = {
 				always = yes
 			}
@@ -49,6 +51,7 @@ ideas = {
 			}
 		}
 		king_army = {
+			picture = YUG_all_yugoslavian_regiments
 			allowed = {
 				always = yes
 			}
@@ -59,6 +62,7 @@ ideas = {
 			}
 		}
 		unstable10 = {
+			picture = FRA_matignon_agreements
 			allowed = {
 				always = yes
 			}
@@ -71,6 +75,7 @@ ideas = {
 			}
 		}
 		unstable5 = {
+			picture = FRA_matignon_agreements
 			allowed = {
 				always = yes
 			}
@@ -83,6 +88,7 @@ ideas = {
 			}
 		}
 		unstable15 = {
+			picture = FRA_matignon_agreements
 			allowed = {
 				always = yes
 			}
@@ -95,6 +101,7 @@ ideas = {
 			}
 		}
 		unstable20 = {
+			picture = FRA_matignon_agreements
 			allowed = {
 				always = yes
 			}
@@ -107,6 +114,7 @@ ideas = {
 			}
 		}
 		unstable30 = {
+			picture = FRA_matignon_agreements
 			allowed = {
 				always = yes
 			}
@@ -120,6 +128,7 @@ ideas = {
 		}
 
 		combine_people = {
+			picture = saf_ossewabrandwag_2
 			allowed = {
 				always = yes
 			}
@@ -161,6 +170,7 @@ ideas = {
 		}
 		monarchy_start = {
 			removal_cost = -1
+			picture = ast_abandon_the_westminster_system
 			allowed = {
 				always = yes
 			}
@@ -169,15 +179,58 @@ ideas = {
 				stability_factor = 0.05
 			}
 		}
+		monarchy_start2 = {
+			removal_cost = -1
+			picture = ast_abandon_the_westminster_system
+			allowed = {
+				always = yes
+			}
+			modifier = {
+				political_power_factor = 0.25
+				stability_factor = 0.05
+				recruitable_population = 0.15
+				political_power_gain = 0.10
+			}
+		}
 		lion_life = {
+			picture = all_yugoslavian_regiments
 			removal_cost = -1
 			allowed = {
 				always = yes
 			}
 			modifier = {
 				war_stability_factor = 0.1
+				army_core_attack_factor = 0.1
+				army_core_defence_factor = 0.1
 				war_support_factor = 0.12
 				weekly_manpower = 1000
+			}
+		}
+		lion_life2 = {
+			removal_cost = -1
+			allowed = {
+				always = yes
+			}
+			modifier = {
+				army_core_attack_factor = 0.15
+				army_core_defence_factor = 0.15
+				war_stability_factor = 0.25
+				war_support_factor = 0.12
+				weekly_manpower = 1500
+			}
+		}
+		ship_doctrine = {
+			removal_cost = -1
+			allowed = {
+				always = yes
+			}
+			picture = generic_navy_bonus
+			modifier = {
+				repair_speed_factor = 0.05
+				naval_coordination = 0.05
+				naval_damage_factor = 0.10
+				naval_speed_factor = 0.15
+				naval_doctrine_cost_factor = -0.5
 			}
 		}
 	}

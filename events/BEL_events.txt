@@ -76,3 +76,41 @@ add_namespace = bel
             }
         }
     }
+    country_event = {
+        id = bel.4
+        title = bel.4t
+        desc = bel.4d
+        is_triggered_only = yes
+        option = {
+            name = bel.4a
+
+                add_opinion_modifier = {
+                target = HOL
+                modifier = large_decrease
+                }
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = MR_pact
+                
+            }
+        }
+    }
+    country_event = {
+        id = bel.5
+        title = bel.5t
+        desc = bel.6d
+        is_triggered_only = yes
+        option = {
+            name = bel.5a
+
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = MR_pact
+                }
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = communism_leanings_good
+                
+            }
+        }
+    }
