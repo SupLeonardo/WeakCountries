@@ -90,7 +90,7 @@ add_namespace = bel
                 }
                 add_opinion_modifier = {
                     target = BEL
-                    modifier = MR_pact
+                    modifier = ENG_benelux_intervention_USA
                 
             }
         }
@@ -98,19 +98,71 @@ add_namespace = bel
     country_event = {
         id = bel.5
         title = bel.5t
-        desc = bel.6d
+        desc = bel.5d
         is_triggered_only = yes
         option = {
             name = bel.5a
-
-                add_opinion_modifier = {
-                    target = BEL
-                    modifier = MR_pact
+                add_equipment_to_stockpile = {
+                    type = infantry_equipment_0
+                    amount = -10000
+                }
+                BEL = {
+                    add_equipment_to_stockpile = {
+                        type = infantry_equipment_0
+                        amount = 10000
+                    }
                 }
                 add_opinion_modifier = {
-                    target = BEL
+                    target = PREV
                     modifier = communism_leanings_good
-                
+                }
+                add_opinion_modifier = {
+                    target = PREV
+                    modifier = non_aggression_pact
+                }
+        }
+    }
+    country_event = {
+        id = bel.6
+        title = bel.6t
+        desc = bel.6d
+        is_triggered_only = yes
+        option = {
+            name = bel.6a
+            ai_chance = {
+                base = 50
+                modifier = {
+                    add = 25
+                    has_opinion = {
+                        target = BEL
+                        value > 75
+                    }
+                }
             }
+            add_stability = 0.05
+            add_political_power = 150
+            BEL = {
+                random_core_state = {
+                    add_extra_state_shared_building_slots = 1
+                    add_building_construction = {
+                        type = industrial_complex
+                        level = 1
+                    }
+                }
+                add_opinion_modifier = {
+                    target = PREV
+                    modifier = medium_increase
+                }
+            }
+        }
+        option = {
+            name = bel.6b
+            BEL = {
+                add_opinion_modifier = {
+                    target = PREV
+                    modifier = medium_decrease
+                }
+            }
+            
         }
     }

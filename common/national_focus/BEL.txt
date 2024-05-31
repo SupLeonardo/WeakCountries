@@ -504,7 +504,7 @@ focus_tree = {
     }
     focus = {
         id = save_people
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_generic_population_growth
         cost = 10
         prerequisite = {
             focus = own_course
@@ -513,12 +513,13 @@ focus_tree = {
         x = 0
         y = 1
         completion_reward = { 
-            
+            add_stability = 0.05
+            add_political_power = 150
         }
     }
     focus = {
         id = other_democracy
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_goal_generic_major_alliance
         cost = 10
         relative_position_id = save_people
         prerequisite = {
@@ -547,7 +548,7 @@ focus_tree = {
     }
     focus = {
         id = denmark_support
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_goal_generic_improve_relations
         cost = 10
         prerequisite = {
             focus = other_democracy
@@ -569,8 +570,70 @@ focus_tree = {
         }
     }
     focus = {
+        id = own_war_path
+        icon = GFX_goal_generic_military_sphere
+        cost = 10
+        relative_position_id = stop_communism
+        x = 1
+        y = 1
+        prerequisite = {
+            focus = stop_communism
+        }
+        prerequisite = {
+            focus = denmark_support
+        }
+        mutually_exclusive = {
+            focus = west_model_economy
+        }
+        completion_reward = { 
+            create_wargoal = {
+                target = ITA
+                type = puppet_wargoal_focus
+            }
+            if = {
+                limit = { 
+                    SWI = {
+                        NOT = {
+                            has_government = democratic
+                        }
+                    }
+                }
+                create_wargoal = {
+                    target = SWI
+                    type = puppet_wargoal_focus
+                }
+            }
+            if = {
+                limit = { 
+                    country_exists = POL
+                }
+                create_wargoal = {
+                    target = POL
+                    type = puppet_wargoal_focus
+                }
+            }
+        }
+    }
+    focus = {
+        id = ultra_democracy
+        icon = GFX_focus_generic_the_giant_wakes
+        cost = 10
+        relative_position_id = west_model_economy
+        prerequisite = {
+            focus = west_model_economy
+            focus = own_war_path
+        }
+        x = 1
+        y = 1
+        completion_reward = { 
+            every_owned_state = {
+                add_core_of = BEL
+            }
+        }
+    }
+    focus = {
         id = unite_benilux
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_goal_generic_dangerous_deal
         cost = 10
         relative_position_id = west_course
         prerequisite = {
@@ -598,7 +661,7 @@ focus_tree = {
     }
     focus = {
         id = stop_fascism
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_generic_anti_fascist_diplomacy
         cost = 10
         relative_position_id = unite_benilux
         prerequisite = {
@@ -617,11 +680,36 @@ focus_tree = {
                 target = GER
                 type = annex_everything
             }
+            add_popularity = {
+                ideology = fascism
+                popularity = -0.05
+            }
+        }
+    }
+    focus = {
+        id = stop_communism
+        relative_position_id = stop_fascism
+        prerequisite = {
+            focus = stop_fascism
+        }
+        icon = GFX_goal_generic_war_with_comintern
+        cost = 10
+        x = 0
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = SOV
+                type = take_state_focus
+            }
+            add_popularity = {
+                ideology = communism
+                popularity = -0.05
+            }
         }
     }
     focus = {
         id = export_chocolate
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_renounce_the_treaty_of_trianon
         cost = 10
         relative_position_id = chocolate
         x = 1
@@ -635,11 +723,36 @@ focus_tree = {
         prerequisite = {
             focus = unite_benilux
         }
-        completion_reward = { }
+        completion_reward = { 
+            USA = {
+                country_event = bel.6
+            }
+            ENG = {
+                country_event = bel.6
+            }
+            FRA = {
+                country_event = bel.6
+            }
+            SWE = {
+                country_event = bel.6
+            }
+            SWI = {
+                country_event = bel.6
+            }
+            POL = {
+                country_event = bel.6
+            }
+            NOR = {
+                country_event = bel.6
+            }
+            DEN = {
+                country_event = bel.6
+            }
+        }
     }
     focus = {
         id = help_from_uk
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_focus_chi_british_cooperation
         cost = 10
         prerequisite = {
             focus = export_chocolate
@@ -647,19 +760,57 @@ focus_tree = {
         relative_position_id = export_chocolate
         x = 0
         y = 1
-        completion_reward = { }
+        completion_reward = { 
+            add_research_slot = 1
+            ENG = {
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = non_aggression_pact
+                }
+                add_equipment_to_stockpile = {
+                    type = infantry_equipment_1
+                    amount = -5000
+                }
+            }
+            BEL = {
+                add_equipment_to_stockpile = {
+                    type = infantry_equipment_1
+                    amount = 5000
+                }
+            }
+        }
     }
     focus = {
         id = west_model_economy
-        icon = GFX_surrender_tiny_flag
+        icon = GFX_goal_generic_positive_trade_relations
         cost = 10
         relative_position_id = help_from_uk
         prerequisite = {
             focus = help_from_uk
         }
-        x = 0
+        prerequisite = {
+            focus = stop_communism
+        }
+        mutually_exclusive = {
+            focus = own_war_path
+        }
+        x = 1
         y = 1
-        completion_reward = { }
+        completion_reward = { 
+            every_core_state = {
+                add_extra_state_shared_building_slots = 1
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                }
+            }
+            USA = {
+                add_opinion_modifier = {
+                    target = BEL
+                    modifier = medium_increase
+                }
+            }
+        }
     }
     focus = {
         id = prepare_to_free
@@ -818,7 +969,7 @@ focus_tree = {
     focus = {
         id = basics_of_communism
         icon = GFX_goal_generic_war_with_comintern
-        cost = 5
+        cost = 10
         relative_position_id = com_start
         prerequisite = {
             focus = com_start
@@ -834,12 +985,16 @@ focus_tree = {
                 remove_idea = unstable10
                 add_idea = unstable15
             }
+            set_politics = {
+                ruling_party = communism
+                elections_allowed = no
+            }
         }
     }
     focus = {
         id = socialism
         icon = GFX_focus_generic_soviet_politics
-        cost = 5
+        cost = 10
         prerequisite = {
             focus = basics_of_communism
         }
@@ -851,10 +1006,6 @@ focus_tree = {
                 ideology = communism
                 popularity = 0.1
             }
-            set_politics = {
-                ruling_party = communism
-                elections_allowed = no
-            }
             swap_ideas = {
                 remove_idea = unstable15
                 add_idea = unstable20
@@ -863,6 +1014,132 @@ focus_tree = {
                 SOV = {
                     country_event = bel.5
                 }
+            }
+        }
+    }
+    focus = {
+        id = german_communism
+        icon = GFX_focus_attack_germany
+        prerequisite = {
+            focus = socialism
+        }
+        prerequisite = {
+            focus = profsouses
+        }
+        cost = 10
+        x = 0
+        y = 1
+        relative_position_id = socialism
+        completion_reward = {
+            swap_ideas = {
+                remove_idea = unstable20
+                add_idea = unstable10
+            } 
+            create_wargoal = {
+                target = GER
+                type = take_state_focus
+            }
+            GER = {
+                add_popularity = {
+                    ideology = communism
+                    popularity = 0.1
+                }
+                add_political_power = -100
+                add_stability = -0.05
+            }
+        }
+    }
+    focus = {
+        id = france_communism
+        icon = GFX_focus_focus_fra_revolution_utmost
+        cost = 10
+        x = 0
+        y = 1
+        prerequisite = {
+            focus = german_communism
+        }
+        relative_position_id = german_communism
+        completion_reward = { 
+            FRA = {
+                add_popularity = {
+                    ideology = communism
+                    popularity = 0.1
+                }
+                add_political_power = -100
+                add_stability = -0.05
+            }
+        }
+    }
+    focus = {
+        id = fight_democracy
+        icon = GFX_focus_prc_agrarian_socialism
+        cost = 10
+        relative_position_id = france_communism
+        prerequisite = {
+            focus = france_communism
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            create_wargoal = {
+                target = ENG
+                type = annex_everything
+            }
+            create_wargoal = {
+                target = USA
+                type = annex_everything
+            }
+        }
+    }
+    focus = {
+        id = com_ultra
+        icon = GFX_focus_ITA_corpo_volontari_della_liberta
+        cost = 10
+        relative_position_id = fight_democracy
+        prerequisite = {
+            focus = fight_democracy
+        }
+        prerequisite = {
+            focus = free_will_be_later
+        }
+        prerequisite = {
+            focus = free_all_africa
+        }
+        available = {
+            has_government = communism
+        }
+        x = -1
+        y = 1
+        completion_reward = { 
+            every_controlled_state = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                }
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                }
+            }
+            every_owned_state = {
+                add_core_of = BEL
+            }
+            create_wargoal = {
+                target = ITA
+                type = take_state_focus
+            }
+            create_wargoal = {
+                target = SWI
+                type = take_state_focus
+            }
+            create_wargoal = {
+                target = POL
+                type = take_state_focus
+            }
+            create_wargoal = {
+                target = SPA
+                type = take_state_focus
             }
         }
     }
@@ -931,6 +1208,30 @@ focus_tree = {
                 }
             }
             
+        }
+    }
+    focus = {
+        id = free_will_be_later
+        icon = GFX_goal_generic_soviet_construction
+        cost = 10
+        relative_position_id = prepare_for_war
+        prerequisite = {
+            focus = prepare_for_war
+        }
+        x = 0
+        y = 1
+        completion_reward = { 
+            every_core_state = {
+                add_extra_state_shared_building_slots = 2
+                add_building_construction = {
+                    type = industrial_complex
+                    level = 1
+                }
+                add_building_construction = {
+                    type = arms_factory
+                    level = 1
+                }
+            }
         }
     }
     focus = {
