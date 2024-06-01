@@ -150,3 +150,5 @@ set_popularities = {
 
 set_convoys = 80
 set_stability = 0.75
+add_ideas = korito
+add_ideas = palka
