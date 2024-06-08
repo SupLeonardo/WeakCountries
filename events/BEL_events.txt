@@ -58,25 +58,6 @@ add_namespace = bel
         }
     }
     country_event = {
-        id = bel.3
-        title = bel.3t
-        desc = bel.3d
-        is_triggered_only = yes
-        # leopold III
-        option = {
-            name = bel.3a
-            ai_chance = {
-                base = 100
-            }
-        }
-        option = {
-            name = bel.3b
-            ai_chance = {
-                base = 0
-            }
-        }
-    }
-    country_event = {
         id = bel.4
         title = bel.4t
         desc = bel.4d

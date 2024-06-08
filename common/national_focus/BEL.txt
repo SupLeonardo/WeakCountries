@@ -1520,6 +1520,15 @@ focus_tree = {
             52 = {
                 is_fully_controlled_by = ROOT
             }
+            60 = {
+                is_fully_controlled_by = ROOT
+            }
+            65 = {
+                is_fully_controlled_by = ROOT
+            }
+            54 = {
+                is_fully_controlled_by = ROOT
+            }
         }
         completion_reward = { 
             add_war_support = 0.1
@@ -1548,14 +1557,6 @@ focus_tree = {
             add_popularity = {
                 ideology = neutrality
                 popularity = 0.14
-            }
-            hidden_effect = {
-                ROOT = {
-                    country_event = {
-                        id = bel.3
-                        days = 14
-                    }
-                }
             }
 
         }

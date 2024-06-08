@@ -7,4 +7,5 @@ tags={
 }
 name="Weak Countries"
 supported_version="1.14.5"
+path="C:/WeakCountries"
 remote_file_id="3259008587"
