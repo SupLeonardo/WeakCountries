@@ -705,6 +705,35 @@ focus_tree = {
                 add_core_of = BEL
             }
         }
+        available = {
+            42 = {
+                is_fully_controlled_by = ROOT
+            }
+            51 = {
+                is_fully_controlled_by = ROOT
+            }
+            57 = {
+                is_fully_controlled_by = ROOT
+            }
+            59 = {
+                is_fully_controlled_by = ROOT
+            }
+            64 = {
+                is_fully_controlled_by = ROOT
+            }
+            52 = {
+                is_fully_controlled_by = ROOT
+            }
+            60 = {
+                is_fully_controlled_by = ROOT
+            }
+            65 = {
+                is_fully_controlled_by = ROOT
+            }
+            54 = {
+                is_fully_controlled_by = ROOT
+            }
+        }
     }
     focus = {
         id = unite_benilux
